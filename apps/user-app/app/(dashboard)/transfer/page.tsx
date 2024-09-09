@@ -36,7 +36,7 @@ async function getOnRampTransactions(){
 
 }
 
-async function getRecent(){
+export async function getRecent(){
     const session = await getServerSession(authOptions)
     if(!session?.user?.id){
         throw new Error('User is not authenticated');
@@ -62,7 +62,6 @@ async function getRecent(){
 }
 export default async function() {
     const balance = await getBalance();
-    const transactions = await getOnRampTransactions();
     const p2p = await getRecent();
 
     return <div className="w-screen">
@@ -75,6 +74,7 @@ export default async function() {
             </div>
             <div>
                 <BalanceCard amount={balance.amount} locked={balance.locked} />
+                <div className="pt-4">
                 <Card title="Recent Transactions">
                     <div>
                         {p2p.map((transaction,index) => (
@@ -98,6 +98,7 @@ export default async function() {
                         ))}
                     </div>
                 </Card>
+                </div>
             </div>
         </div>
     </div>

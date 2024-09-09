@@ -8,11 +8,12 @@ app.post('/hdfcWebhook',async (req,res) => {
     const paymentInformation : {
         token : string;
         userId : string;
-        amount : string
+        amount : string;
+
     } = {
         token : req.body.token,
         userId : req.body.userId,
-        amount : req.body.amount
+        amount : req.body.amount,
     }
 
     try{
