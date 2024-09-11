@@ -64,26 +64,28 @@ export const AddMoney = () => {
             }
         }
         catch(error:any){
-            //setMessage("Error:" + error.message)
+            setMessage("Error:" + error.message)
         }
     }
     return (
-        <div className='w-screen'>
+        <div>
             <Card title="Add Money">
                 <TextInput placeholder={"Amount"} label="Amount" onChange={(value) => {
                     setAmount(value);
                 }}
                 />
-                        <Select
-          onSelect={(value) => {
-            setRedirectUrl(SUPPORTED_BANKS.find((x) => x.name === value)?.redirectUrl || "");
-            setProvider(SUPPORTED_BANKS.find((x) => x.name === value)?.provider);
-          }}
-          options={SUPPORTED_BANKS.map((x) => ({
-            key: x.provider,
-            value: x.name,
+            <div className='pt-4'>                <Select
+                    onSelect={(value) => {
+                    setRedirectUrl(SUPPORTED_BANKS.find((x) => x.name === value)?.redirectUrl || "");
+                    setProvider(SUPPORTED_BANKS.find((x) => x.name === value)?.provider);
+                }}
+                options={SUPPORTED_BANKS.map((x) => ({
+                key: x.provider,
+                value: x.name,
           }))}
         />
+        </div>
+
         <div className="flex justify-center pt-4">
           <Button onClick={handleMoney}>
             {loading ? "Processing..." : "Add Money"}
